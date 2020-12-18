@@ -25,6 +25,10 @@ def foo(username, password):
         return True
     return False
 
+@auth.error_handler
+def unauthorized():
+    return make_response(jsonify( { 'error': 'Unauthorized access' } ), 403)
+
 @app.route('/')
 @auth.login_required
 def index():
