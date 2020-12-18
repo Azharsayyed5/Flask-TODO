@@ -69,7 +69,7 @@ def update_task(task_id):
 @app.route('/todo/api/v1.0/tasks/<int:task_id>', methods = ['DELETE'])
 def delete_task(task_id):
 
-    task = filter(lambda t: t['id'] == task_id, tasks)
+    task = list(filter(lambda t: t['id'] == task_id, tasks))
 
     if len(task) == 0:
         abort(404)
