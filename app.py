@@ -28,12 +28,12 @@ def get_tasks():
 @app.route('/todo/api/v1.0/tasks/<int:task_id>', methods = ['GET'])
 def get_task(task_id):
 
-    task = filter(lambda t: t['id'] == task_id, tasks)
+    task = list(filter(lambda t: t['id'] == task_id, tasks))
 
     if len(task) == 0:
         abort(404)
 
-    return jsonify( { 'task': task) } )
+    return jsonify( { 'task': task[0]) } )
 
 @app.route('/todo/api/v1.0/tasks', methods = ['POST'])
 def create_task():
@@ -55,7 +55,7 @@ def create_task():
 @app.route('/todo/api/v1.0/tasks/<int:task_id>', methods = ['PUT'])
 def update_task(task_id):
 
-    task = filter(lambda t: t['id'] == task_id, tasks)
+    task = list(filter(lambda t: t['id'] == task_id, tasks))
 
     if len(task) == 0 or if not request.json:
         abort(404)
