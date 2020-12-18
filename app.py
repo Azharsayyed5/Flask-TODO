@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, abort, request, make_response, url_for
 
-app = Flask(__name__, static_url_path = "")
+app = Flask(__name__)
 
 tasks = [
     {
